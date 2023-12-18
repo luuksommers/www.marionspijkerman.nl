@@ -1,0 +1,38 @@
+﻿@page "{id:int}"
+@using MarionSpijkerman.Website.Models
+@model DetailsModel
+@{
+    ViewData["Title"] = "Gallery";
+    int counter = 0;
+}
+
+<nav style="display:block; width:100%; clear: both; height: 30px;">
+    @if (Model.Prev != null)
+    {
+        <a href="~/details/@Model.Prev.Id" style="float:left">&lt; @Model.Prev.Name</a>
+    }
+
+    @if (Model.Next != null)
+    {
+        <a href="~/details/@Model.Next.Id" style="float:right">@Model.Next.Name &gt;</a>
+    }
+</nav>
+
+<div id="details">
+    <a href="/">
+        <img id="painting" src="~/img/@Model.Painting.ImageFile" alt="Image of @Model.Painting.Name" />
+    </a>
+    <div id="paintingDetails">
+        <strong>@Model.Painting.Name (@Model.Painting.Year)</strong><br />
+        @Model.Painting.Material<br />
+        <i>@Model.Painting.Width x @Model.Painting.Height cm</i>
+        @if (Model.Painting.ForSale)
+        {
+            <text>
+                <br />
+                <br />
+                <span style="color:green">For Sale</span>
+            </text>
+        }
+    </div>
+</div>
